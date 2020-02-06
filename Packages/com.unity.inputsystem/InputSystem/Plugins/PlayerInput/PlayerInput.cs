@@ -1022,6 +1022,9 @@ namespace UnityEngine.InputSystem
         [Tooltip("Reference to the player's view camera. Note that this is only required when using split-screen and/or "
             + "per-player UIs. Otherwise it is safe to leave this property uninitialized.")]
         [SerializeField] internal Camera m_Camera;
+        [Tooltip("Set the index of which player this PlayerInput should be assigned to."
+            + "Automatically assigned on enable when set to -1.")]
+        [SerializeField] internal int m_PlayerIndex = -1;
 
         // Value object we use when sending messages via SendMessage() or BroadcastMessage(). Can be ignored
         // by the receiver. We reuse the same object over and over to avoid allocating garbage.
@@ -1029,7 +1032,6 @@ namespace UnityEngine.InputSystem
 
         [NonSerialized] internal InputActionMap m_CurrentActionMap;
 
-        [NonSerialized] private int m_PlayerIndex = -1;
         [NonSerialized] private bool m_InputActive;
         [NonSerialized] private bool m_Enabled;
         [NonSerialized] private bool m_ActionsInitialized;

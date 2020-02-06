@@ -117,6 +117,15 @@ namespace UnityEngine.InputSystem.Editor
             --EditorGUI.indentLevel;
             DoHelpCreateAssetUI();
 
+            // Player index setting.
+            var playerIndexProperty = serializedObject.FindProperty("m_PlayerIndex");
+            if (m_PlayerIndexPropertyText == null)
+                m_PlayerIndexPropertyText = EditorGUIUtility.TrTextContent("Player Index", playerIndexProperty.tooltip);
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(playerIndexProperty, m_PlayerIndexPropertyText);
+            if (EditorGUI.EndChangeCheck())
+                serializedObject.ApplyModifiedProperties();
+
             // UI config section.
             var uiModuleProperty = serializedObject.FindProperty("m_UIInputModule");
             if (m_UIPropertyText == null)
